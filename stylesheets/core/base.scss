@@ -1,0 +1,40 @@
+html {
+  box-sizing: border-box;
+  background: $black;
+  color: $white;
+}
+
+a {
+  text-decoration: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  outline: none;
+  outline: 0;
+}
+
+*:hover, *:active, *:focus {
+  outline: none;
+  outline: 0;
+}
+
+body,
+html {
+  height: 100%;
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+main {
+    overflow-x: hidden;
+}
+
+img {
+    &:focus {
+        outline: none;
+    }
+}

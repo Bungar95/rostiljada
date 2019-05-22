@@ -1,0 +1,26 @@
+html {
+  box-sizing: border-box; }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  outline: none;
+  outline: 0; }
+
+*:hover, *:active, *:focus {
+  outline: none;
+  outline: 0; }
+
+body,
+html {
+  height: 100%;
+  overflow-x: hidden; }
+
+main {
+  overflow-x: hidden; }
+
+img:focus {
+  outline: none; }
+
+/*# sourceMappingURL=base.css.map */
