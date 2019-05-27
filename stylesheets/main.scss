@@ -1,5 +1,8 @@
 @import './variables';
 
+//mixins
+@import './tools/mixins';
+
 // core
 @import './core/base';
 @import './core/typography';
@@ -8,9 +11,7 @@
 @import './layout/layout';
 @import './layout/section';
 
-//mixins
-@import './tools/mixins';
-
 //modules
 @import './modules/hero';
 @import './modules/card';
+@import './modules/advice';

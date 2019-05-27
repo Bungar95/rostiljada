@@ -34,8 +34,13 @@
 
 .card--img {
     position: relative;
-    width: calc(350/1920*100vw);
-    height: calc(400/1920*100vw);
+    width: 280px;
+    height: 320px;
+
+    @include breakpoint ($large) {
+        width: calc(350/1920*100vw);
+        height: calc(400/1920*100vw);
+    }
 
     .card__body {
         height: 100%;

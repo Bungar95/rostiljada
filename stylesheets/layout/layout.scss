@@ -22,11 +22,31 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.875rem 0; 
+    padding: 1.875rem 0;
+    display: none;
+
+    @include breakpoint ($large) {
+        display: flex;
+    } 
+}
+
+.nav--mobile {
+    display: flex;
+    z-index: 30;
+
+
+    @include breakpoint ($large) {
+        display: none;
+    } 
+
+    a,
+    .hamburger-icon {
+        z-index: 1;
+    }
 }
 
 .nav__logo {
-    font-size: 1.5rem;
+    font-size: calc(28/1920*100vw);
     text-transform: uppercase;
     font-weight: bold;
     color: $color-primary;
@@ -44,13 +64,13 @@
 
 .nav__link {
     color: $white;
-    margin-left: 3rem;
+    margin-left: calc(40/1920*100vw);
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 600;
     display: inline-block;
-    font-size: 0.75rem;
+    font-size: calc(14/1920*100vw);
     transition: $transition;
 
     &:hover, &:focus, &:active {
@@ -58,16 +78,265 @@
     }
 }
 
-.layout--main {
-    max-width: 80%;
-    margin: 0 auto;
+.nav__link--lang {
+    position: relative;
+    color: $color-primary;
+
+    @include breakpoint ($large) {
+
+        &:before {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 1px;
+            background: $color-primary;
+            display: block;
+            top: 0;
+            left: calc(-20/1920*100vw);
+        }
+    }
 }
 
+.nav__links {
+    display: none;
+
+    @include breakpoint ($large) {
+        display: block;
+    }
+}
+
+
+.hamburger {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: $black;
+    padding-top: 100px;
+    transition: $transition;
+    display: none;
+
+    .nav__link {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+.hamburger__wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.hamburger-icon {
+    height: 20px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    div {
+        height: 2px;
+        width: 30px;
+        background: $white;
+        position: relative;
+        transition: $transition;
+
+        &:after {
+            content: '';
+            display: block;
+            background: $white;
+            height: 2px;
+            width: 20px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto;
+            transform: translateY(8px);
+            transition: $transition;
+        }
+    }
+
+    &.active {
+        div {
+            transform: rotateZ(45deg);
+
+            &:after {
+                left: 0;
+                transform: rotateZ(90deg);
+                width: 30px;
+            }
+        }
+    }
+
+    
+}
+
+/*------------------------------------*\
+# LAYOUT
+\*------------------------------------*/
+
+.layout {
+
+  &--main {
+    width: 100%;
+    max-width: calc(100% - 2*4.69%);
+    margin-left: auto;
+    margin-right: auto;
+
+    @include breakpoint ($large) {
+      max-width: 73.13%;
+      max-width: calc(1512/1920*100vw);
+    }
+  }
+
+
+  &--full {
+    width: 100%;
+
+    @include breakpoint ($medium) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+  }
+}
+
+/*------------------------------------*\
+# GRID
+\*------------------------------------*/
+
 .grid {
-    display: grid;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.no-wrap {
+  flex-wrap: no-wrap !important;
+}
+
+.grid--gutters {
+  margin-left: calc( #{$gutter-small} / -2 );
+  margin-right: calc( #{$gutter-small} / -2 );
+
+  @include breakpoint ($large) {
+    margin-left: calc( #{$gutter} / -2 );
+    margin-right: calc( #{$gutter} / -2 );
+  }
+}
+
+.grid--gutters > .cell {
+  padding-left: calc( #{$gutter-small} / 2 );
+  padding-right: calc( #{$gutter-small} / 2 );
+
+  @include breakpoint ($large) {
+    padding-left: calc( #{$gutter} / 2 );
+    padding-right: calc( #{$gutter} / 2 );
+  }
+}
+
+.grid--gutters--double {
+  margin-left: -$gutter;
+  margin-right: -$gutter;
+}
+
+.grid--gutters--double > .cell {
+  padding-left: $gutter;
+  padding-right: $gutter;
+}
+
+.grid--full-mobile {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+
+  @include breakpoint ($large) {
+    width: 100%;
+    margin-left: calc( #{$gutter} / -2 );
+    margin-right: calc( #{$gutter} / -2 );
+  }
+}
+
+.cell {
+  box-sizing: border-box;
+}
+
+.cell--auto {
+  flex: 1;
+}
+
+@for $i from 1 through 12 {
+  .cell--#{$i} {
+    flex-shrink: 0;
+    flex-grow: 0;
+    width: calc( 100% * ( #{$i} / 12 ) )
+  }
+}
+
+@each $key, $value in $breakpoints {
+  @include breakpoint ($value) {
+    @for $i from 1 through 12 {
+      .cell--#{$i}--#{$key} {
+        flex-shrink: 0;
+        flex-grow: 0;
+        width: calc( 100% * ( #{$i} / 12 ) )
+      }
+    }
+  }
+}
+
+
+
+/*------------------------------------*\
+# GRID UTILITIES
+\*------------------------------------*/
+
+.grid--reverse-mobile {
+  flex-direction: column-reverse;
+
+  @include breakpoint ($large) {
+    flex-direction: row;
+  }
+}
+
+.grid--center {
+  justify-content: center;
+}
+
+.grid--space {
+  justify-content: space-between;
+}
+
+.grid--row-reverse {
+
+  @include breakpoint ($large) {
+    flex-direction: row-reverse;
+  }
+}
+
+.gap--medium {
+  grid-gap: 1rem;
+
+  @include breakpoint ($large) {
+    grid-gap: 2*$gutter 15%;
+  }
+}
+
+
+.justify--center {
+  display: flex;
+  justify-content: center;
 }
 
 .grid--3-col {
-    grid-template-columns: 1fr 1fr 1fr;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 2*$gutter;
     justify-items: center;
+
+    @include breakpoint ($large) {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: $gutter;
+    }
 }

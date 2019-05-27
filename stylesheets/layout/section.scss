@@ -49,10 +49,14 @@
     }*/
 
     h2 {
-        font-size: 2.5rem;
+        font-size: 1.875rem;
         text-transform: uppercase;
         font-weight: 600;
         letter-spacing: 2.5px;
+
+        @include breakpoint ($large) {
+            font-size: 2.5rem;
+        }
     }
 }
 
@@ -82,4 +86,75 @@
 .concert__time {
     color: $color-primary;
     font-weight: 500;
+}
+
+.about {
+    font-size: 1.25rem;
+    line-height: 1.8;
+}
+
+.gallery {
+    display: grid;
+    grid-gap: $gutter;
+    grid-template-columns: 1fr;
+
+    @include breakpoint ($large) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.gallery__img {
+    transition: $transition;
+    cursor: pointer;
+
+    img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    &:hover {
+        opacity: 0.5;
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 30;
+    background: rgba($black, 0.9);
+    padding: calc(200/1920*100vw);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+
+    .gallery__img {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            height: 100%;
+            width: auto;
+            max-width: 100%;
+        }
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+.modal__wrap {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
