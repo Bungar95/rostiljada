@@ -40,6 +40,9 @@ main {
 img:focus {
   outline: none; }
 
+html {
+  font-size: 16px; }
+
 body {
   font-family: 'Montserrat', sans-serif;
   font-size: 16px; }

@@ -74,7 +74,9 @@
             </div>
         </div>
         <div class="scroll-down">
-            <img src="./assets/arrow.svg" alt="">
+            <a href="#datum">
+                <img src="./assets/arrow.svg" alt="">
+            </a>
         </div>
     </div>
 
@@ -370,9 +372,13 @@
         });
 
         $('.nav__link').click(function(){
-            $('.nav__link').removeClass('active');
+            $('.js-menu').fadeOut(220);
+        });
+
+        $('.nav__link').click(function(){
+            $('.nav__link, .js-icon').removeClass('active');
             $(this).addClass('active');
-        })
+        });
 
     </script>
 </body>
