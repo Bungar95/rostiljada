@@ -4,6 +4,10 @@ html {
   color: $white;
 }
 
+body {
+  scroll-behavior: smooth;
+}
+
 a {
   text-decoration: none;
 }

@@ -10,6 +10,9 @@ html {
   background: #121212;
   color: #FFFFFF; }
 
+body {
+  scroll-behavior: smooth; }
+
 a {
   text-decoration: none; }
 
@@ -92,11 +95,17 @@ body {
     z-index: 1; }
 
 .nav__logo {
-  font-size: calc(28/1920*100vw);
+  line-height: 1;
+  font-size: 22px;
   text-transform: uppercase;
   font-weight: bold;
   color: #ff4f09;
-  transition: all 220ms ease-in-out; }
+  transition: all 220ms ease-in-out;
+  width: 200px; }
+  @media only screen and (min-width: 1024px) {
+    .nav__logo {
+      width: auto;
+      font-size: calc(28/1920*100vw); } }
   .nav__logo span {
     font-weight: 500;
     color: #FFFFFF; }
@@ -113,7 +122,7 @@ body {
   display: inline-block;
   font-size: calc(14/1920*100vw);
   transition: all 220ms ease-in-out; }
-  .nav__link:hover, .nav__link:focus, .nav__link:active {
+  .nav__link:hover, .nav__link:focus, .nav__link:active, .nav__link.active {
     color: #ff4f09; }
 
 .nav__link--lang {
@@ -143,10 +152,11 @@ body {
   height: 100vh;
   width: 100vw;
   background: #121212;
-  padding-top: 100px;
+  padding-top: 200px;
   transition: all 220ms ease-in-out;
   display: none; }
   .hamburger .nav__link {
+    margin-left: 0;
     font-size: 1rem;
     margin-bottom: 1rem; }
 
@@ -162,6 +172,7 @@ body {
   align-items: center;
   cursor: pointer; }
   .hamburger-icon div {
+    margin-top: -8px;
     height: 2px;
     width: 30px;
     background: #FFFFFF;

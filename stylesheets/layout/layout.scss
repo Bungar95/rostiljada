@@ -47,12 +47,19 @@
 }
 
 .nav__logo {
-    font-size: calc(28/1920*100vw);
+    line-height: 1;
+    font-size: 22px;
     text-transform: uppercase;
     font-weight: bold;
     color: $color-primary;
     transition: $transition;
+    width: 200px;
 
+    @include breakpoint ($large) {
+      width: auto;
+      font-size: calc(28/1920*100vw);
+    }
+ 
     span {
         font-weight: 500;
         color: $white;
@@ -74,7 +81,11 @@
     font-size: calc(14/1920*100vw);
     transition: $transition;
 
-    &:hover, &:focus, &:active {
+    @include breakpoint ($large) {
+
+    }
+
+    &:hover, &:focus, &:active, &.active {
         color: $color-primary;
     }
 }
@@ -114,11 +125,12 @@
     height: 100vh;
     width: 100vw;
     background: $black;
-    padding-top: 100px;
+    padding-top: 200px;
     transition: $transition;
     display: none;
 
     .nav__link {
+        margin-left: 0;
         font-size: 1rem;
         margin-bottom: 1rem;
     }
@@ -138,6 +150,7 @@
     cursor: pointer;
 
     div {
+        margin-top: -8px;
         height: 2px;
         width: 30px;
         background: $white;
